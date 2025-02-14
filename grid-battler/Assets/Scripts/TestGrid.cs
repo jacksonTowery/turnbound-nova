@@ -38,7 +38,7 @@ public class TestGrid : MonoBehaviour
     {
         Sprite spriteP = Resources.Load<Sprite>("Sprites/Selectable_Tile");
         Sprite spriteD = Resources.Load<Sprite>("Sprites/Tile");
-        Debug.Log(spriteD);
+        //Debug.Log(spriteD);
         //  Grid<bool> grid = new Grid<bool>(11, 11, 10f, new Vector3(20,0), ()=> new bool());
         pathFinding = new PathFinding(11, 11, spriteP,spriteD);
          characters = new List<Character>();
@@ -276,7 +276,7 @@ public class TestGrid : MonoBehaviour
                 changeCharacter(GetCharacter(mouseWorldPosition));
                 pathFinding.getGrid().resetSprites();
             }
-            else if (move && !containsCharacter(mouseWorldPosition) && !character.getMoved())
+            else if (move &&character!=null&& !containsCharacter(mouseWorldPosition) && !character.getMoved()&&mouseWorldPosition.x>=0&&mouseWorldPosition.y>=0&&mouseWorldPosition.x<=110&&mouseWorldPosition.y<=110)
             {
                 pathFinding.getGrid().GetXY(mouseWorldPosition, out int xEnd, out int yEnd);
                 pathFinding.getGrid().GetXY(character.getPosition(), out int xStart, out int yStart);
@@ -330,7 +330,7 @@ public class TestGrid : MonoBehaviour
                     Debug.Log("Out of Range ");
                 }
             }
-            else if (attack && containsCharacter(mouseWorldPosition)&&!GetCharacter(mouseWorldPosition).getIsOwner() && !character.getAttack())
+            else if (attack &&character!=null&& containsCharacter(mouseWorldPosition)&&!GetCharacter(mouseWorldPosition).getIsOwner() && !character.getAttack())
             {
                changeTargetedCharacter(GetCharacter(mouseWorldPosition));
 
@@ -363,7 +363,7 @@ public class TestGrid : MonoBehaviour
                 }
 
             }
-            else if (act && containsCharacter(mouseWorldPosition)&&!character.getAct())
+            else if (act &&character!=null&& containsCharacter(mouseWorldPosition)&&!character.getAct())
             {
                 changeTargetedCharacter(GetCharacter(mouseWorldPosition));
                 if (targetedCharacter.getIsOwner() == character.getActType()) 

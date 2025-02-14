@@ -22,7 +22,7 @@ public class Character: MonoBehaviour
     public bool supporter=true;
     public Abillity ab=new Abillity();
     public string abType = "heal";
-    public string name = "Beta";
+    public string charName = "Beta";
     public Sprite charSprite;
    // public Sprite[] sprites=Resources.LoadAll("Spites",  typeof(Sprite)).Cast<Sprite>().ToArray();
 
@@ -80,7 +80,7 @@ public class Character: MonoBehaviour
     }
     public string getName()
     {
-        return name;
+        return charName;
     }
     public void setName(string a)
     {
