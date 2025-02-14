@@ -23,6 +23,7 @@ public class Character: MonoBehaviour
     public Abillity ab=new Abillity();
     public string abType = "heal";
     public string name = "Beta";
+    public Sprite charSprite;
    // public Sprite[] sprites=Resources.LoadAll("Spites",  typeof(Sprite)).Cast<Sprite>().ToArray();
 
     public int getmRange()
