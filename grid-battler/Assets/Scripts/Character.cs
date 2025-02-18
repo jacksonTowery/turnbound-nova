@@ -134,9 +134,9 @@ public class Character: MonoBehaviour
     {
         transform.position = pos;
     }
-    public void takeDammage(int power)
+    public void takeDammage(int power, int b)
     {
-        health -= power*25 / def;
+        health -= power*b / def;
         if(health <= 0)
         {
             defeated();

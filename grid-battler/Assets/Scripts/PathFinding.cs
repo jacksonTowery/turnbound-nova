@@ -8,7 +8,7 @@ public class PathFinding
 {
     private const int MOVE_STRAIGHT_COST = 10;
     //private const int MOVE_DIAGONAL_COST = 14;
-    private const int MOVE_DIAGONAL_COST = 100;
+    private const int MOVE_DIAGONAL_COST = 25;
 
     public static PathFinding Instance { get; private set; }
 

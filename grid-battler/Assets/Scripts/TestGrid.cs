@@ -346,7 +346,9 @@ public class TestGrid : MonoBehaviour
 
                 if (dis<=character.getaRange())
                 {
-                    targetedCharacter.takeDammage(character.getAtk());
+                   // Random rand=new Random();
+                    int num = UnityEngine.Random.Range(20, 30);
+                    targetedCharacter.takeDammage(character.getAtk(), num);
                     character.attack();
                     pathFinding.getGrid().resetSprites();
                     useAnAction() ;
