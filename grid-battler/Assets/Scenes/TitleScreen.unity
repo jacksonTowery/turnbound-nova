@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 274, y: 1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6828327
@@ -372,7 +372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 274, y: -74}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33397049
@@ -592,6 +592,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b51f2aeb3f8d048993b875abf76fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1233466579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1233466580}
+  - component: {fileID: 1233466582}
+  - component: {fileID: 1233466581}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1233466580
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233466579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1724517621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -105.65117, y: 0.00023365}
+  m_SizeDelta: {x: 588.6978, y: 432.99}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1233466581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233466579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "     Turn Composition\nOnce the game has started, a number on the top
+    left corner will display whose turn it is (1 is the bottom player, 2 is the top
+    player). The turn player is able to use the yellow target button to select which
+    of their characters they wish to perform an action.  Each player is permitted
+    3 actions a turn, and the amount they have left is displayed on the top right
+    corner. If a player wishes to end their turn despite still having actions left,
+    they can press the white Pass Turn button.\n\n     Types of Actions\nMove: When
+    you press the green Move button, the possible tiles your currently selected character
+    can move to will be highlighted. By clicking on the selected tile, your character
+    will move to that tile. Note that a character cannot move to a tile that already
+    contains another character.\nAttack: When you press the red Attack button, the
+    possible tiles your currently selected character can hit will be highlighted.
+    By clicking on an opponent's character that is on a highlighted tile, your character
+    will attack that character and lower its HP based on your characters attack stat
+    and the targeted characters defense stat. If a characters HP becomes zero, it
+    will be removed from the game. \nAbility: When you press the blue Use Ability
+    button, the possible tiles your currently selected character can use their special
+    ability at will be highlighted. Every character has a unique ability. Some can
+    help their allies and even themselves, while others can weaken their opponents.
+    \n\n     Stat Display\n\tThe display on the left will give you detailed information
+    on the last character you clicked on, such as their current health, stats, and
+    ability. The display on the displays the character that the turn player currently
+    has selected to perform an action, as well as which action they currently have
+    selected."
+--- !u!222 &1233466582
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233466579}
+  m_CullTransparentMesh: 1
 --- !u!1 &1500563855
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 274, y: 76}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610491238
@@ -993,6 +1095,7 @@ RectTransform:
   - {fileID: 1610491237}
   - {fileID: 6828326}
   - {fileID: 33397048}
+  - {fileID: 1233466580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

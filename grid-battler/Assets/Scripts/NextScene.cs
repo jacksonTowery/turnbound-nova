@@ -25,4 +25,8 @@ public class NextScene : MonoBehaviour
     {
         SceneManager.LoadScene("Team2Selection");
     }
+    public void ToHowToPlay() 
+        {
+        SceneManager.LoadScene("HowToPlay");
+    }
 }
