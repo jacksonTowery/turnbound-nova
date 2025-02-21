@@ -193,7 +193,7 @@ public class TestGrid : MonoBehaviour
     }
     public void attackTrue()
     {
-        if (!attack)
+        if (!attack && character != null && !character.getAttack())
         {
             attack = true;
             move = false;
@@ -212,7 +212,7 @@ public class TestGrid : MonoBehaviour
     }
     public void moveTrue() 
     {
-        if (!move)
+        if (!move && character != null && !character.getMoved())
         {
             attack = false;
             move = true;
@@ -232,7 +232,7 @@ public class TestGrid : MonoBehaviour
     }
     public void actTrue() 
     {
-        if (!act)
+        if (!act&&character!=null&&!character.getAct())
         {
             attack = false;
             move = false;
@@ -435,6 +435,9 @@ public class TestGrid : MonoBehaviour
             {
                 updateStatDisplay(GetCharacter(mouseWorldPosition));
             }
+            act = false;
+            move=false;
+            attack=false;
             if (actions==0)
             {
                 changeTurn();
