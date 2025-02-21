@@ -103,6 +103,10 @@ public class Character: MonoBehaviour
     {
         attacked = true;
     }
+    public void usedAction()
+    {
+        usedAbillity=true;
+    }
     public bool getAttack()
     {
         return attacked;

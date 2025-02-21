@@ -346,6 +346,7 @@ public class TestGrid : MonoBehaviour
                 {
                     character.SetPosition(pathFinding.getGrid().GetWorldPosition(xEnd, yEnd) + new Vector3(5, 5));
                     character.Moved();
+                    move = false;
                     pathFinding.getGrid().resetSprites();
                     useAnAction();
                 }
@@ -374,6 +375,7 @@ public class TestGrid : MonoBehaviour
                     int num = UnityEngine.Random.Range(20, 30);
                     targetedCharacter.takeDammage(character.getAtk(), num);
                     character.attack();
+                    attack = false;
                     pathFinding.getGrid().resetSprites();
                     useAnAction() ;
                     Debug.Log("HP: " + targetedCharacter.getHealth());
@@ -404,6 +406,9 @@ public class TestGrid : MonoBehaviour
                     {
                         targetedCharacter=character.action(targetedCharacter);
                         pathFinding.getGrid().resetSprites();
+                        character.usedAction();
+                        act = false;
+
                         useAnAction();
                         Debug.Log("HP: " + targetedCharacter.getHealth());
                         
@@ -435,9 +440,9 @@ public class TestGrid : MonoBehaviour
             {
                 updateStatDisplay(GetCharacter(mouseWorldPosition));
             }
-            act = false;
+            /*act = false;
             move=false;
-            attack=false;
+            attack=false;*/
             if (actions==0)
             {
                 changeTurn();
