@@ -193,37 +193,61 @@ public class TestGrid : MonoBehaviour
     }
     public void attackTrue()
     {
-        attack = true;
-        move = false;
-        act = false;
-        target=false;
-        updateCurrentDisplay(character);
-        pathFinding.getGrid().resetSprites();
-        pathFinding.getGrid().GetXY(character.getPosition(), out int x, out int y);
-        pathFinding.setPathSprite(character.getaRange() + 1, x, y, false);
+        if (!attack)
+        {
+            attack = true;
+            move = false;
+            act = false;
+            target = false;
+            updateCurrentDisplay(character);
+            pathFinding.getGrid().resetSprites();
+            pathFinding.getGrid().GetXY(character.getPosition(), out int x, out int y);
+            pathFinding.setPathSprite(character.getaRange() + 1, x, y, false);
+        }
+        else
+        {
+            attack = false;
+            pathFinding.getGrid().resetSprites();
+        }
     }
     public void moveTrue() 
     {
-        attack=false;
-        move = true;
-        act = false;
-        target=false;
-        updateCurrentDisplay(character);
-        pathFinding.getGrid().resetSprites();
-        pathFinding.getGrid().GetXY(character.getPosition(),out int x,out int y);
-        pathFinding.setPathSprite(character.getmRange()+1, x, y, true);
-        // Debug.Log("move");
+        if (!move)
+        {
+            attack = false;
+            move = true;
+            act = false;
+            target = false;
+            updateCurrentDisplay(character);
+            pathFinding.getGrid().resetSprites();
+            pathFinding.getGrid().GetXY(character.getPosition(), out int x, out int y);
+            pathFinding.setPathSprite(character.getmRange() + 1, x, y, true);
+            // Debug.Log("move");
+        }
+        else
+        {
+            move = false;
+            pathFinding.getGrid().resetSprites();
+        }
     }
     public void actTrue() 
     {
-        attack = false;
-        move = false;
-        act = true;
-        target=false ;
-        updateCurrentDisplay(character);
-        pathFinding.getGrid().resetSprites();
-        pathFinding.getGrid().GetXY(character.getPosition(), out int x, out int y);
-        pathFinding.setPathSprite(character.getactRange()+1, x, y, false);
+        if (!act)
+        {
+            attack = false;
+            move = false;
+            act = true;
+            target = false;
+            updateCurrentDisplay(character);
+            pathFinding.getGrid().resetSprites();
+            pathFinding.getGrid().GetXY(character.getPosition(), out int x, out int y);
+            pathFinding.setPathSprite(character.getactRange() + 1, x, y, false);
+        }
+        else
+        {
+            act = false;
+            pathFinding.getGrid().resetSprites();
+        }
     }
     public void targetTrue()
     {
@@ -271,7 +295,7 @@ public class TestGrid : MonoBehaviour
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             //mouseWorldPosition.z = 0f;
             //  Debug.Log(UtilsClass.GetMouseWorldPosition());
-            if (containsCharacter(mouseWorldPosition) && GetCharacter(mouseWorldPosition).getIsOwner()&&target)
+            if (containsCharacter(mouseWorldPosition) && GetCharacter(mouseWorldPosition).getIsOwner()&&((target)||!move&&!act&&!attack))
             {
                 changeCharacter(GetCharacter(mouseWorldPosition));
                 pathFinding.getGrid().resetSprites();
