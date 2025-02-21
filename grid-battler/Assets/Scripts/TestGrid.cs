@@ -208,6 +208,7 @@ public class TestGrid : MonoBehaviour
         {
             attack = false;
             pathFinding.getGrid().resetSprites();
+            updateCurrentDisplay(character);
         }
     }
     public void moveTrue() 
@@ -228,6 +229,7 @@ public class TestGrid : MonoBehaviour
         {
             move = false;
             pathFinding.getGrid().resetSprites();
+            updateCurrentDisplay(character);
         }
     }
     public void actTrue() 
@@ -247,6 +249,7 @@ public class TestGrid : MonoBehaviour
         {
             act = false;
             pathFinding.getGrid().resetSprites();
+            updateCurrentDisplay(character);
         }
     }
     public void targetTrue()
