@@ -22,6 +22,7 @@ public class TestGrid : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image StatDisplaySprite;
     [SerializeField] private UnityEngine.UI.Image CurrentSprite;
     [SerializeField] private Text currentDisplay;
+    [SerializeField] private Text Victor;
     //[SerializeField] private List<Character> characters;
     private Character character;
     private Character targetedCharacter;
@@ -142,7 +143,9 @@ public class TestGrid : MonoBehaviour
         }
         if (!stillAnOpponent)
         {
-            Debug.Log("Player " + ((turn % 2)+1) + " Wins");
+           
+            //Debug.Log("Player " + ((turn % 2)+1) + " Wins");
+            Victor.text = "Player " + ((turn % 2) + 1) + " Wins";
         }
     }
     public void updateStatDisplay(Character stat)
