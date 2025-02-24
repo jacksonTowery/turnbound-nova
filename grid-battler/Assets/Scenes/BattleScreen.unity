@@ -523,7 +523,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 55, y: 5, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -549,7 +549,8 @@ MonoBehaviour:
   owner: 1
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &286257184
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +672,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45, y: 105, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -697,7 +698,8 @@ MonoBehaviour:
   owner: 0
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &407776853
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +902,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65, y: 105, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -926,7 +928,8 @@ MonoBehaviour:
   owner: 0
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &444706444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45, y: 5, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1186,7 +1189,8 @@ MonoBehaviour:
   owner: 1
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &523974046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2537,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65, y: 5, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2559,7 +2563,8 @@ MonoBehaviour:
   owner: 1
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &1946025799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,7 +2686,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 55, y: 105, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2707,7 +2712,8 @@ MonoBehaviour:
   owner: 0
   supporter: 1
   abType: heal
-  name: Beta
+  charName: Beta
+  charSprite: {fileID: 0}
 --- !u!1 &1979073661
 GameObject:
   m_ObjectHideFlags: 0
