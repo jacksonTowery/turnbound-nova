@@ -414,7 +414,6 @@ GameObject:
   - component: {fileID: 281268193}
   - component: {fileID: 281268192}
   - component: {fileID: 281268191}
-  - component: {fileID: 281268195}
   m_Layer: 0
   m_Name: Circle B
   m_TagString: Untagged
@@ -528,29 +527,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &281268195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281268189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae980583de695c640b63af2ef3922b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 1
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &286257184
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +539,6 @@ GameObject:
   - component: {fileID: 286257188}
   - component: {fileID: 286257187}
   - component: {fileID: 286257186}
-  - component: {fileID: 286257190}
   m_Layer: 0
   m_Name: Circle D
   m_TagString: Untagged
@@ -677,29 +652,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &286257190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286257184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac66d784a3011dd479528f68e62ab427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 0
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &407776853
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +745,6 @@ GameObject:
   - component: {fileID: 426563936}
   - component: {fileID: 426563935}
   - component: {fileID: 426563934}
-  - component: {fileID: 426563938}
   m_Layer: 0
   m_Name: Circle F
   m_TagString: Untagged
@@ -907,29 +858,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &426563938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426563932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bce78ce027821541b83b612db2fb289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 0
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &444706444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +983,6 @@ GameObject:
   - component: {fileID: 469414446}
   - component: {fileID: 469414445}
   - component: {fileID: 469414449}
-  - component: {fileID: 469414450}
   m_Layer: 0
   m_Name: Circle A
   m_TagString: Untagged
@@ -1169,29 +1096,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &469414450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469414444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfe64fbc6c7ab241be98bdcc8cc5ece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 1
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &523974046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,12 +1639,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf012eb64a55bc48bf7746128c96910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterA: {fileID: 469414450}
-  characterB: {fileID: 281268195}
-  characterC: {fileID: 1863994721}
-  characterD: {fileID: 286257190}
-  characterE: {fileID: 1946025805}
-  characterF: {fileID: 426563938}
+  objA: {fileID: 469414444}
+  objB: {fileID: 281268189}
+  objC: {fileID: 1863994715}
+  objD: {fileID: 286257184}
+  objE: {fileID: 1946025799}
+  objF: {fileID: 426563932}
   turnIdentifier: {fileID: 238956935}
   StatDisplay: {fileID: 1979073663}
   actionCount: {fileID: 523974048}
@@ -2509,7 +2413,6 @@ GameObject:
   - component: {fileID: 1863994719}
   - component: {fileID: 1863994718}
   - component: {fileID: 1863994717}
-  - component: {fileID: 1863994721}
   m_Layer: 0
   m_Name: Circle C
   m_TagString: Untagged
@@ -2623,29 +2526,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1863994721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863994715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca8a498b49ce9b479187a0c1c690839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 1
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &1946025799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,7 +2538,6 @@ GameObject:
   - component: {fileID: 1946025803}
   - component: {fileID: 1946025802}
   - component: {fileID: 1946025801}
-  - component: {fileID: 1946025805}
   m_Layer: 0
   m_Name: Circle E
   m_TagString: Untagged
@@ -2772,29 +2651,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1946025805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946025799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2bdd1a595a3194fb133167fa58ed5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 0
-  def: 0
-  mRange: 0
-  aRange: 0
-  actRange: 0
-  isSelected: 0
-  owner: 0
-  supporter: 1
-  abType: heal
-  charName: Beta
-  charSprite: {fileID: 0}
 --- !u!1 &1979073661
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,12 +10,18 @@ public class TestGrid : MonoBehaviour
     // Start is called before the first frame update
     private PathFinding pathFinding;
     //[SerializeField] private CharacterPathfinding characterPathfinding;
-    [SerializeField] private Character characterA;
-    [SerializeField] private Character characterB;
-    [SerializeField] private Character characterC;
-    [SerializeField] private Character characterD;
-    [SerializeField] private Character characterE;
-    [SerializeField] private Character characterF;
+    [SerializeField] private GameObject objA;
+    [SerializeField] private GameObject objB;
+    [SerializeField] private GameObject objC;
+    [SerializeField] private GameObject objD;
+    [SerializeField] private GameObject objE;
+    [SerializeField] private GameObject objF;
+    // [SerializeField] private Character characterA;
+    //[SerializeField] private Character characterB;
+    //[SerializeField] private Character characterC;
+    //[SerializeField] private Character characterD;
+    //[SerializeField] private Character characterE;
+   // [SerializeField] private Character characterF;
     [SerializeField] private Text turnIdentifier;
     [SerializeField] private Text StatDisplay;
     [SerializeField] private Text actionCount;
@@ -43,15 +49,69 @@ public class TestGrid : MonoBehaviour
         //  Grid<bool> grid = new Grid<bool>(11, 11, 10f, new Vector3(20,0), ()=> new bool());
         pathFinding = new PathFinding(11, 11, spriteP,spriteD);
          characters = new List<Character>();
-         characters.Add(characterA);
-         characters.Add(characterB);
-         characters.Add(characterC);
-         characters.Add(characterD);
-         characters.Add(characterE);
-         characters.Add(characterF);
+        objA = attatchChar(CharList.selectCharA,objA);
+         //characters.Add(characterA);
+        //Debug.Log(CharList.selectChar);
+         characters.Add(objA.GetComponent<Character>());
+         //characters.Add(characterB);
+         objB=attatchChar(CharList.selectCharB,objB);
+        characters.Add(objB.GetComponent<Character>());
+        //characters.Add(characterC);
+        objC = attatchChar(CharList.selectCharC, objC);
+        characters.Add(objC.GetComponent<Character>());
+        //characters.Add(characterD);
+        objD = attatchChar(CharList.selectCharD, objD);
+        characters.Add(objD.GetComponent<Character>());
+        // characters.Add(characterE);
+        objE = attatchChar(CharList.selectCharE, objE);
+        characters.Add(objE.GetComponent<Character>());
+        // characters.Add(characterF);
+        objF = attatchChar(CharList.selectCharF, objF);
+        characters.Add(objF.GetComponent<Character>());
         //changeCharacter(characterA);
         //changeTargetedCharacter(characterE);
-        
+        int t = 0;
+        foreach (Character c in characters)
+        {
+            if (t <= 2)
+                c.change();
+
+            t++;
+        }
+    }
+    public GameObject attatchChar(String name, GameObject obj)
+    {
+        if (name.Equals("Human"))
+        {
+            obj.AddComponent<Human>();
+        }
+        else if (name.Equals("Tank"))
+        {
+            obj.AddComponent<Tank>();
+        }
+        else if (name.Equals("Robot"))
+        {
+            obj.AddComponent<Robot>();
+        }
+        else if (name.Equals("Alien"))
+        {
+            obj.AddComponent<Alien>();
+        }
+        else if (name.Equals("Astronomer"))
+        {
+            obj.AddComponent<Astronomer>();
+        }
+        else if (name.Equals("Axellottle"))
+        {
+            obj.AddComponent<Axellottle>();
+        }
+        else
+        {
+            obj.AddComponent<Character>();
+        }
+
+
+        return obj;
     }
     public void changeCharacter(Character character)
     {
