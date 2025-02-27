@@ -84,7 +84,7 @@ public class Character: MonoBehaviour
     }
     public void setName(string a)
     {
-        name = a;
+        charName = a;
     }
     public string getAction()
     {

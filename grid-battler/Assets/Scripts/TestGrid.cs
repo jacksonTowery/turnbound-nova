@@ -107,11 +107,40 @@ public class TestGrid : MonoBehaviour
         }
         else
         {
-            obj.AddComponent<Character>();
+            attatchChar(randChar(), obj);
         }
 
 
         return obj;
+    }
+    public string randChar()
+    {
+        int num = UnityEngine.Random.Range(0, 6);
+        if(num == 0)
+        {
+            return "Human";
+        }
+        else if(num == 1)
+        {
+            return "Tank";
+        }
+        else if(num == 2)
+        {
+            return "Astronomer";
+        }
+        else if(num == 3)
+        {
+            return "Alien";
+        }
+        else if (num == 4)
+        {
+            return "Robot";
+        }
+        else if(num == 5)
+        {
+            return "Axellottle";
+        }
+        return "Human";
     }
     public void changeCharacter(Character character)
     {
@@ -189,7 +218,7 @@ public class TestGrid : MonoBehaviour
         targetedCharacter = null;
         updateCurrentDisplay(character);
         turn += 1;
-        turnIdentifier.text = "" + ((turn % 2)+1);
+        turnIdentifier.text = "P" + ((turn % 2)+1);
     }
     public void checkForVictory()
     {
@@ -444,7 +473,7 @@ public class TestGrid : MonoBehaviour
                     attack = false;
                     pathFinding.getGrid().resetSprites();
                     useAnAction() ;
-                    Debug.Log("HP: " + targetedCharacter.getHealth());
+                   // Debug.Log("HP: " + targetedCharacter.getHealth());
                     if(targetedCharacter.getHealth()<=0)
                     {
                         characters.Remove(targetedCharacter);
@@ -453,7 +482,7 @@ public class TestGrid : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Out of Range: "+dis);
+                   // Debug.Log("Out of Range: "+dis);
                 }
 
             }

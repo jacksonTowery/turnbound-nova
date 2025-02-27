@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CharList : MonoBehaviour
 {
-    public static string selectCharA="Human";
-    public static string selectCharB = "Human";
-    public static string selectCharC = "Human";
-    public static string selectCharD = "Human";
-    public static string selectCharE = "Human";
-    public static string selectCharF = "Human";
+    public static string selectCharA=" "; 
+    public static string selectCharB = " ";
+    public static string selectCharC = " ";
+    public static string selectCharD = " ";
+    public static string selectCharE = " ";
+    public static string selectCharF = " ";
 }
