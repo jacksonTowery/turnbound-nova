@@ -181,6 +181,10 @@ public class Character: MonoBehaviour
 
             gameObject.GetComponent<SpriteRenderer>().sprite = s;
     }
+    public Component getChar()
+    {
+        return gameObject.GetComponent<Character>();
+    }
 
 
     /*private void OnMouseDown()

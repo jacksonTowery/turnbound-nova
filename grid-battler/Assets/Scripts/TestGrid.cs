@@ -81,7 +81,8 @@ public class TestGrid : MonoBehaviour
     }
     public GameObject attatchChar(String name, GameObject obj)
     {
-        if (name.Equals("Human"))
+      //  obj.AddComponent<Character>();
+        if (name.Equals("Astronaut"))
         {
             obj.AddComponent<Human>();
         }
@@ -110,6 +111,14 @@ public class TestGrid : MonoBehaviour
             attatchChar(randChar(), obj);
         }
 
+       /* foreach (Character c in CharacterList.charList)
+        {
+            Component component=c.getChar();
+            if (name.Equals(c.getName()))
+            {
+                obj.GetComponent<Character>() = c;
+            }
+        }*/
 
         return obj;
     }
@@ -118,7 +127,7 @@ public class TestGrid : MonoBehaviour
         int num = UnityEngine.Random.Range(0, 6);
         if(num == 0)
         {
-            return "Human";
+            return "Astronaut";
         }
         else if(num == 1)
         {
@@ -140,7 +149,7 @@ public class TestGrid : MonoBehaviour
         {
             return "Axellottle";
         }
-        return "Human";
+        return "Astronaut";
     }
     public void changeCharacter(Character character)
     {
@@ -254,7 +263,7 @@ public class TestGrid : MonoBehaviour
     {
         if (current == null)
         {
-            CurrentSprite.sprite = null;
+            CurrentSprite.sprite = Resources.Load<Sprite>("Sprites/New Piskel");
             currentDisplay.text = "Select a Character.";
         }
         else

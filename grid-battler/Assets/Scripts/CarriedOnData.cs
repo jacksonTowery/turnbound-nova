@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CarriedOnData : MonoBehaviour
@@ -22,6 +23,26 @@ public class CarriedOnData : MonoBehaviour
     [SerializeField] Image status;
     [SerializeField] Text statusText;
     [SerializeField] GameObject obj;
+    [SerializeField] List<Character> charOptions;
+    public void Start()
+    {
+        CharacterList.charList = charOptions;
+        addToList(carriedA);
+        addToList(carriedB);
+        addToList(carriedC);
+        addToList(carriedD);
+        addToList(carriedE);
+        addToList(carriedF);
+    }
+    public void addToList(Dropdown dropdown)
+    {
+        List<string> list = new List<string>();
+        foreach (Character character in CharacterList.charList)
+        {
+            list.Add(character.getName());
+        }
+        dropdown.AddOptions(list);
+    }
     public bool hasUpdated = true;
     private void Update()
     {
