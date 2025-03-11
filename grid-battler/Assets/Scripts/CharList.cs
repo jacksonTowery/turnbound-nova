@@ -10,4 +10,5 @@ public class CharList : MonoBehaviour
     public static string selectCharD = " ";
     public static string selectCharE = " ";
     public static string selectCharF = " ";
+    public static bool AI=false;
 }

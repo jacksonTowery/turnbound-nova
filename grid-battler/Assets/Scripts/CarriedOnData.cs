@@ -24,6 +24,7 @@ public class CarriedOnData : MonoBehaviour
     [SerializeField] Text statusText;
     [SerializeField] GameObject obj;
     [SerializeField] List<Character> charOptions;
+    [SerializeField] Text opponent;
     public void Start()
     {
         CharacterList.charList = charOptions;
@@ -95,6 +96,19 @@ public class CarriedOnData : MonoBehaviour
         //Debug.Log(CharList.selectCharA);
         setSprite(spriteF, CharList.selectCharF);
         setChar(CharList.selectCharF);
+    }
+    public void toggleAI()
+    {
+        if (CharList.AI)
+        {
+            CharList.AI=false;
+            opponent.text = "Player 2's Team";
+        }
+        else
+        {
+            CharList.AI=true;
+            opponent.text = "AI's Team";
+        }
     }
     public void setSprite(Image i, string name)
     {
