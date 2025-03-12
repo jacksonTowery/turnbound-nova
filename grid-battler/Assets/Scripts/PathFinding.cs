@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -54,7 +55,9 @@ public class PathFinding
             }
         }
         startNode.gCost = 0;
+       // UnityEngine.Debug.Log(endX+" "+endY);
         startNode.hCost = calculateDistance(startNode, endNode);
+       // UnityEngine.Debug.Log("Great");
         startNode.calculateFcost();
         //  Debug.Log("OpenList count: " + openList.Count);
         while (openList.Count > 0)
@@ -197,6 +200,7 @@ public class PathFinding
 
     private int calculateDistance(PathNode a, PathNode b)
     {
+       // UnityEngine.Debug.Log(a+" "+b);
         int xDistance = Mathf.Abs(a.x - b.x);
         int yDistance = Mathf.Abs(a.y - b.y);
         int remaining = Mathf.Abs(xDistance - yDistance);

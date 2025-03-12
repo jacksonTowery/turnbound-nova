@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -246,6 +248,13 @@ public class TestGrid : MonoBehaviour
             Victor.text = "Player " + ((turn % 2) + 1) + " Wins";
         }
     }
+    public bool player1Turn()
+    {
+        if(turn%2==0)
+            return true;
+
+        return false;
+    }
     public void updateStatDisplay(Character stat)
     {
         StatDisplaySprite.sprite=stat.GetComponent<SpriteRenderer>().sprite;
@@ -365,6 +374,84 @@ public class TestGrid : MonoBehaviour
     {
         changeTurn();
     }
+    public void randomChar()
+    {
+        int teamSize = 0;
+        foreach (Character c in characters)
+        {
+            if (c.getIsOwner())
+            {
+               teamSize++;
+            }
+        }
+        int chosen=UnityEngine.Random.Range(0, teamSize);
+        teamSize = 0;
+
+        foreach (Character c in characters)
+        {
+            if (c.getIsOwner())
+            {
+                if(chosen==teamSize)
+                {
+                    changeCharacter(c);
+                }
+                teamSize++;
+
+            }
+        }
+    }
+    public void randomEnemy()
+    {
+        int teamSize = 0;
+        foreach (Character c in characters)
+        {
+            if (!c.getIsOwner())
+            {
+                teamSize++;
+            }
+        }
+        int chosen = UnityEngine.Random.Range(0, teamSize);
+        teamSize = 0;
+
+        foreach (Character c in characters)
+        {
+            if (!c.getIsOwner())
+            {
+                if (chosen == teamSize)
+                {
+                    changeTargetedCharacter(c);
+                }
+                teamSize++;
+
+            }
+        }
+    }
+    public void randomTarget(Character ch)
+    {
+        int teamSize = 0;
+        foreach (Character c in characters)
+        {
+            if (c.getIsOwner()==ch.getActType())
+            {
+                teamSize++;
+            }
+        }
+        int chosen = UnityEngine.Random.Range(0, teamSize);
+        teamSize = 0;
+
+        foreach (Character c in characters)
+        {
+            if (c.getIsOwner()==ch.getActType())
+            {
+                if (chosen == teamSize)
+                {
+                    changeTargetedCharacter(c);
+                }
+                teamSize++;
+
+            }
+        }
+    }
     public void Update()
     {
         /* if(Input.GetMouseButtonDown(1))
@@ -378,6 +465,91 @@ public class TestGrid : MonoBehaviour
          }
 
          else*/
+        if (!player1Turn()&&CharList.AI)
+        {
+            randomChar();
+            //Debug.Log(character);
+            int decission = UnityEngine.Random.Range(0, 3);
+           // int decission = 0;
+            if (decission == 0&&!character.getMoved())
+            {
+                pathFinding.getGrid().GetXY(character.getPosition(), out int xStart, out int yStart);
+                int xEnd = ((UnityEngine.Random.Range(0, 10))*10)+5;
+                int yEnd = ((UnityEngine.Random.Range(0, 10)) * 10)+5;
+                // Debug.Log(xEnd + " " + yEnd);
+               // Debug.Log("Good");
+               float dis = Math.Abs(Vector3.Distance(new Vector3(xEnd,yEnd), character.getPosition()));
+               dis /= 10;
+                Debug.Log(xEnd + ", " + yEnd);
+                
+                //List<PathNode> path = pathFinding.FindPath(xStart, yStart, xEnd, yEnd, true);
+                // Debug.Log("Great");
+                //if (path.Count <= character.getmRange() + 1&&!containsCharacter(new Vector3(xEnd,yEnd)))
+                if (dis <= character.getmRange() + 1 && !containsCharacter(new Vector3(xEnd, yEnd)))
+                {
+                    //Debug.Log("good");
+                   // character.SetPosition(pathFinding.getGrid().GetWorldPosition(xEnd, yEnd) + new Vector3(5, 5));
+                   character.SetPosition(new Vector3(xEnd,yEnd));
+                    character.Moved();
+                    Debug.Log(character.getPosition()+"Pos");
+                   // move = false;
+                   // pathFinding.getGrid().resetSprites();
+                    useAnAction();
+                }
+                
+            }
+            else if(decission == 1&&!character.getAttack())
+            {
+                randomEnemy();
+                Vector3 tarPos = targetedCharacter.getPosition();
+
+                float dis = Vector3.Distance(targetedCharacter.getPosition(), character.getPosition());
+                dis /= 10;
+                // Vector3 dis = (character.getPosition() - targetedCharacter.getPosition()).magnitude;
+
+                if (dis <= character.getaRange())
+                {
+                    // Random rand=new Random();
+                    int num = UnityEngine.Random.Range(20, 30);
+                    targetedCharacter.takeDammage(character.getAtk(), num);
+                    character.attack();
+                    attack = false;
+                    pathFinding.getGrid().resetSprites();
+                    useAnAction();
+                    // Debug.Log("HP: " + targetedCharacter.getHealth());
+                    if (targetedCharacter.getHealth() <= 0)
+                    {
+                        characters.Remove(targetedCharacter);
+                        checkForVictory();
+                    }
+                }
+            }
+            else if(decission == 2 && !character.getAct())
+            {
+                randomTarget(character);
+                Vector3 tarPos = targetedCharacter.getPosition();
+
+                float dis = Vector3.Distance(targetedCharacter.getPosition(), character.getPosition());
+                dis /= 10;
+                // Vector3 dis = (character.getPosition() - targetedCharacter.getPosition()).magnitude;
+
+                if (dis <= character.getactRange())
+                {
+                    targetedCharacter = character.action(targetedCharacter);
+                    pathFinding.getGrid().resetSprites();
+                    character.usedAction();
+                    act = false;
+
+                    useAnAction();
+                   // Debug.Log("Acted");
+
+                }
+            }
+
+            //useAnAction();
+            if(actions==0)
+                changeTurn();
+        }
         
         if(Input.GetMouseButtonDown(1))
         {
@@ -456,7 +628,7 @@ public class TestGrid : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Out of Range ");
+                    //Debug.Log("Out of Range ");
                 }
             }
             else if (attack &&character!=null&& containsCharacter(mouseWorldPosition)&&!GetCharacter(mouseWorldPosition).getIsOwner() && !character.getAttack())
@@ -514,12 +686,12 @@ public class TestGrid : MonoBehaviour
                         act = false;
 
                         useAnAction();
-                        Debug.Log("HP: " + targetedCharacter.getHealth());
+                      //  Debug.Log("HP: " + targetedCharacter.getHealth());
                         
                     }
                     else
                     {
-                        Debug.Log("Out of Range: " + dis);
+                        //Debug.Log("Out of Range: " + dis);
                     }
                 }
             }
