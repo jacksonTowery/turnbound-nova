@@ -480,7 +480,7 @@ public class TestGrid : MonoBehaviour
                // Debug.Log("Good");
                float dis = Math.Abs(Vector3.Distance(new Vector3(xEnd,yEnd), character.getPosition()));
                dis /= 10;
-                Debug.Log(xEnd + ", " + yEnd);
+                //Debug.Log(xEnd + ", " + yEnd);
                 
                 //List<PathNode> path = pathFinding.FindPath(xStart, yStart, xEnd, yEnd, true);
                 // Debug.Log("Great");
