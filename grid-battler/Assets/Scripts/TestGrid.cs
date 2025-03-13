@@ -104,7 +104,7 @@ public class TestGrid : MonoBehaviour
         {
             obj.AddComponent<Astronomer>();
         }
-        else if (name.Equals("Axellottle"))
+        else if (name.Equals("Axellotle"))
         {
             obj.AddComponent<Axellottle>();
         }

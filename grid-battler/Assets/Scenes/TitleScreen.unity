@@ -2840,7 +2840,7 @@ GameObject:
   - component: {fileID: 700381454}
   - component: {fileID: 700381456}
   m_Layer: 0
-  m_Name: Axel
+  m_Name: Axellotle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9129,7 +9129,7 @@ GameObject:
   - component: {fileID: 2093807800}
   - component: {fileID: 2093807802}
   m_Layer: 0
-  m_Name: Human
+  m_Name: Astronaut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

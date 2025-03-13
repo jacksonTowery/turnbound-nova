@@ -38,10 +38,14 @@ public class CarriedOnData : MonoBehaviour
     public void addToList(Dropdown dropdown)
     {
         List<string> list = new List<string>();
+        string s = "";
         foreach (Character character in CharacterList.charList)
         {
-            list.Add(character.getName());
+            s=character.name;
+           // Debug.Log(s);
+            list.Add(s);
         }
+       // Debug.Log(list.ToArray());
         dropdown.AddOptions(list);
     }
     public bool hasUpdated = true;
@@ -134,7 +138,7 @@ public class CarriedOnData : MonoBehaviour
         {
             sprite = Resources.Load<Sprite>("Sprites/Long_Range");
         }
-        else if (name.Equals("Axellottle"))
+        else if (name.Equals("Axellotle"))
         {
             sprite = Resources.Load<Sprite>("Sprites/Squishy");
         }
@@ -147,7 +151,7 @@ public class CarriedOnData : MonoBehaviour
         //obj = new GameObject();
         //obj.AddComponent<SpriteRenderer>();
         Destroy(obj.GetComponent<Character>());
-        if (name.Equals("Human"))
+        if (name.Equals("Astronaut"))
         {
             obj.AddComponent<Human>();
         }
@@ -167,7 +171,7 @@ public class CarriedOnData : MonoBehaviour
         {
             obj.AddComponent<Astronomer>();
         }
-        else if (name.Equals("Axellottle"))
+        else if (name.Equals("Axellotle"))
         {
             obj.AddComponent<Axellottle>();
         }
