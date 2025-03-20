@@ -32,25 +32,25 @@ public class Abillity
     public Character healChar(Character character)
     {
        character.heal(25);
-        Debug.Log("Health: " + character.getHealth());
+        //Debug.Log("Health: " + character.getHealth());
         return character;
     }
     public Character boostA(Character character)
     {
         character.setAtk(character.getAtk() + 1);
-        Debug.Log("Attack: " + character.getAtk());
+        //Debug.Log("Attack: " + character.getAtk());
         return character;
     }
     public Character boostD(Character character)
     {
         character.setDef(character.getDef() + 1);
-        Debug.Log("Deffense: " + character.getDef());
+        //Debug.Log("Deffense: " + character.getDef());
         return character;
     }
     public Character boostM(Character character)
     {
         character.setmRange(character.getmRange() + 1);
-        Debug.Log("Movement Range: " + character.getmRange());
+        //Debug.Log("Movement Range: " + character.getmRange());
         return character;
     }
 

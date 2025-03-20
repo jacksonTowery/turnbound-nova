@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 //using System.Linq;
 
@@ -184,6 +185,80 @@ public class Character: MonoBehaviour
     public Component getChar()
     {
         return gameObject.GetComponent<Character>();
+    }
+    public int calculateValue()
+    {
+        int value = 0;
+        value = atk+def+mRange+aRange+actRange;
+        value *= (health / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
+    }
+    public int calculateDamValue(int pow)
+    {
+        int hp=health-(25*pow)/def;
+        if (hp <= 0)
+            return 0;
+
+        int value = 0;
+        value = atk + def + mRange + aRange + actRange;
+        value *= ((hp) / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
+    }
+    public int calculateHealValue()
+    {
+        int hp = health + 25;
+        if (hp >=100)
+            hp=100;
+
+        int value = 0;
+        value = atk + def + mRange + aRange + actRange ;
+        value *= ((hp) / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
+    }
+    public int calculateMoveValue(Vector3 pos)
+    {
+        int value = 0;
+        value = atk + def + mRange + aRange + actRange ;
+        value *= (health / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(pos, new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
+    }
+    public int calculateBoostValue()
+    {
+        int value = 0;
+        value = atk + def + mRange + aRange + actRange +1;
+        value *= (health / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
+    }
+    public int calculateLowerValue()
+    {
+        int value = 0;
+        value = atk + def + mRange + aRange + actRange -1;
+        value *= (health / 10);
+        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        if (!owner)
+            value *= -1;
+
+        return value;
     }
 
 

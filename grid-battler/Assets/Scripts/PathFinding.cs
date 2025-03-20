@@ -71,6 +71,12 @@ public class PathFinding
             {
                 // Debug.Log("done");
                 //Problem
+                //if (currentNode == null)
+                 //   UnityEngine.Debug.Log("pathnode is null");
+
+                //if(currentNode!=null)
+                    //UnityEngine.Debug.Log("pathnode is not null");
+
                 return calculatePath(endNode);
             }
 
@@ -200,9 +206,20 @@ public class PathFinding
 
     private int calculateDistance(PathNode a, PathNode b)
     {
-       // UnityEngine.Debug.Log(a+" "+b);
-        int xDistance = Mathf.Abs(a.x - b.x);
-        int yDistance = Mathf.Abs(a.y - b.y);
+        // UnityEngine.Debug.Log(a+" "+b);
+        //UnityEngine.Debug.Log("a: " + a + " b: " + b);
+        int xDistance;
+        int yDistance;
+        if (b == null)
+        {
+            xDistance = a.x;
+            yDistance = a.y;
+        }
+        else
+        {
+            xDistance = Mathf.Abs(a.x - b.x);
+            yDistance = Mathf.Abs(a.y - b.y);
+        }
         int remaining = Mathf.Abs(xDistance - yDistance);
         return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, yDistance) + MOVE_STRAIGHT_COST * remaining;
     }

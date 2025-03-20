@@ -41,8 +41,9 @@ public class TestGrid : MonoBehaviour
     bool target;
     private int actions = 3;
     int turn = 0;
+    ValueCalculator calc = new ValueCalculator();
     // [SerializeField] public Camera camera;
-   // [SerializeField] public Component.camera camera;
+    // [SerializeField] public Component.camera camera;
     void Start()
     {
         Sprite spriteP = Resources.Load<Sprite>("Sprites/Selectable_Tile");
@@ -80,6 +81,7 @@ public class TestGrid : MonoBehaviour
 
             t++;
         }
+        
     }
     public GameObject attatchChar(String name, GameObject obj)
     {
@@ -246,6 +248,7 @@ public class TestGrid : MonoBehaviour
            
             //Debug.Log("Player " + ((turn % 2)+1) + " Wins");
             Victor.text = "Player " + ((turn % 2) + 1) + " Wins";
+            CharList.AI=false;
         }
     }
     public bool player1Turn()
@@ -257,12 +260,14 @@ public class TestGrid : MonoBehaviour
     }
     public void updateStatDisplay(Character stat)
     {
+        //Debug.Log(stat.calculateValue()*Math.Abs(Vector3.Distance(stat.getPosition(),new Vector3(55,55))-70));
+       // Debug.Log(Vector3.Distance(new Vector3(55, 55), new Vector3(105, 105)));
         StatDisplaySprite.sprite=stat.GetComponent<SpriteRenderer>().sprite;
         string name =stat.getName();
         string health=""+stat.getHealth();
         string atk=""+stat.getAtk();
         string def = "" + stat.getDef();
-        string m = "" + stat.getmRange();
+        string m = "" + stat.getmRange(); 
         string ar = "" + stat.getaRange();
         string acr = "" + stat.getactRange();
         string ab=""+stat.getAction();
@@ -467,47 +472,64 @@ public class TestGrid : MonoBehaviour
          else*/
         if (!player1Turn()&&CharList.AI)
         {
-            randomChar();
+           // randomChar();
             //Debug.Log(character);
-            int decission = UnityEngine.Random.Range(0, 3);
+            //int decission = UnityEngine.Random.Range(0, 3);
            // int decission = 0;
+           calc.calculateAll(characters, pathFinding);
+            int decission = calc.getAction();
+            changeCharacter(calc.getCharacter());
+            //Debug.Log(calc.getCharacter());
+            changeTargetedCharacter(calc.getTarget());
+           // Debug.Log(character);
+            //Debug.Log(decission);
+            //Debug.Log(targetedCharacter);
             if (decission == 0&&!character.getMoved())
             {
-                pathFinding.getGrid().GetXY(character.getPosition(), out int xStart, out int yStart);
-                int xEnd = ((UnityEngine.Random.Range(0, 10))*10)+5;
-                int yEnd = ((UnityEngine.Random.Range(0, 10)) * 10)+5;
-                // Debug.Log(xEnd + " " + yEnd);
-               // Debug.Log("Good");
-               float dis = Math.Abs(Vector3.Distance(new Vector3(xEnd,yEnd), character.getPosition()));
-               dis /= 10;
-                //Debug.Log(xEnd + ", " + yEnd);
                 
+                pathFinding.getGrid().GetXY(character.getPosition(), out int xStart, out int yStart);
+                // int xEnd = ((UnityEngine.Random.Range(0, 10))*10)+5;
+                // int yEnd = ((UnityEngine.Random.Range(0, 10)) * 10)+5;
+                calc.getPosition(out int xEnd, out int yEnd);
+                xEnd = (xEnd * 10) + 5;
+                yEnd = (yEnd * 10) + 5; 
+                //pathFinding.getGrid().GetXY(new Vector3(xEnda, yEnda), out int xEnd, out int yEnd);
+                // Debug.Log(xEnd + " " + yEnd);
+                // Debug.Log("Good");
+                // float dis = Math.Abs(Vector3.Distance(new Vector3(xEnd,yEnd), character.getPosition()));
+                //dis /= 10;
+                //Debug.Log(xEnd + ", " + yEnd);
+
                 //List<PathNode> path = pathFinding.FindPath(xStart, yStart, xEnd, yEnd, true);
                 // Debug.Log("Great");
                 //if (path.Count <= character.getmRange() + 1&&!containsCharacter(new Vector3(xEnd,yEnd)))
-                if (dis <= character.getmRange() + 1 && !containsCharacter(new Vector3(xEnd, yEnd)))
+                // Debug.Log(dis+"<="+character.getmRange());
+               // Debug.Log("Xa: " + xEnd + ", Ya: " + yEnd + ", X: " + xEnd + ", Y: " + yEnd);
+                if ( !containsCharacter(new Vector3(xEnd, yEnd)))
                 {
+                    
                     //Debug.Log("good");
-                   // character.SetPosition(pathFinding.getGrid().GetWorldPosition(xEnd, yEnd) + new Vector3(5, 5));
-                   character.SetPosition(new Vector3(xEnd,yEnd));
+                    // character.SetPosition(pathFinding.getGrid().GetWorldPosition(xEnd, yEnd) + new Vector3(5, 5));
+                    character.SetPosition(new Vector3(xEnd,yEnd));
                     character.Moved();
-                    Debug.Log(character.getPosition()+"Pos");
+                    //Debug.Log(character.getPosition()+"Pos");
                    // move = false;
                    // pathFinding.getGrid().resetSprites();
-                    useAnAction();
+                   // useAnAction();
                 }
-                
+                //calc.calculate(character, decission, new Vector3(xEnd, yEnd), targetedCharacter, characters);
+               // Debug.Log(calc.getValue());
             }
             else if(decission == 1&&!character.getAttack())
             {
-                randomEnemy();
+                //randomEnemy();
                 Vector3 tarPos = targetedCharacter.getPosition();
 
                 float dis = Vector3.Distance(targetedCharacter.getPosition(), character.getPosition());
                 dis /= 10;
                 // Vector3 dis = (character.getPosition() - targetedCharacter.getPosition()).magnitude;
 
-                if (dis <= character.getaRange())
+                if (dis <= character.getaRange()&&!character.getAttack())
                 {
                     // Random rand=new Random();
                     int num = UnityEngine.Random.Range(20, 30);
@@ -515,7 +537,7 @@ public class TestGrid : MonoBehaviour
                     character.attack();
                     attack = false;
                     pathFinding.getGrid().resetSprites();
-                    useAnAction();
+                    //useAnAction();
                     // Debug.Log("HP: " + targetedCharacter.getHealth());
                     if (targetedCharacter.getHealth() <= 0)
                     {
@@ -526,7 +548,7 @@ public class TestGrid : MonoBehaviour
             }
             else if(decission == 2 && !character.getAct())
             {
-                randomTarget(character);
+                //randomTarget(character);
                 Vector3 tarPos = targetedCharacter.getPosition();
 
                 float dis = Vector3.Distance(targetedCharacter.getPosition(), character.getPosition());
@@ -540,14 +562,16 @@ public class TestGrid : MonoBehaviour
                     character.usedAction();
                     act = false;
 
-                    useAnAction();
+                    //useAnAction();
                    // Debug.Log("Acted");
 
                 }
             }
 
-            //useAnAction();
-            if(actions==0)
+            useAnAction();
+            calc.reset();
+           // Debug.Log(actions);
+            if(actions<=0)
                 changeTurn();
         }
         
