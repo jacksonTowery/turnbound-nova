@@ -16,15 +16,6 @@ public class NextScene : MonoBehaviour
         SceneManager.LoadScene("BattleScreen");
     }
 
-    public void ToTeam1()
-    {
-        SceneManager.LoadScene("Team1Selection");
-    }
-
-    public void ToTeam2()
-    {
-        SceneManager.LoadScene("Team2Selection");
-    }
     public void ToHowToPlay() 
         {
         SceneManager.LoadScene("HowToPlay");

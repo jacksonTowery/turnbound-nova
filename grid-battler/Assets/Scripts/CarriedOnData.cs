@@ -117,7 +117,7 @@ public class CarriedOnData : MonoBehaviour
     public void setSprite(Image i, string name)
     {
         Sprite sprite= Resources.Load<Sprite>("Sprites/Human (2)");
-        if (name.Equals("Human"))
+        if (name.Equals("Astronaut"))
         {
             sprite = Resources.Load<Sprite>("Sprites/Human (2)");
         }
@@ -141,6 +141,10 @@ public class CarriedOnData : MonoBehaviour
         else if (name.Equals("Axellotle"))
         {
             sprite = Resources.Load<Sprite>("Sprites/Squishy");
+        }
+        else
+        {
+            sprite = Resources.Load<Sprite>("Sprites/Question");
         }
         i.sprite = sprite;
        // Debug.Log("good "+name);
