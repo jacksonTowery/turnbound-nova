@@ -199,7 +199,8 @@ public class PathFinding
         path.Reverse();
         // Debug.Log("good here "+ path);
         // return path;
-       // grid=new Grid<PathNode>(width, height, 10f, Vector3.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y), null);
+        // grid=new Grid<PathNode>(width, height, 10f, Vector3.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y), null);
+        //UnityEngine.Debug.Log("Good");
        grid.resetGrid((Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
         return path;
     }

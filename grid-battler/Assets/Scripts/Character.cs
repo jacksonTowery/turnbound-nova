@@ -18,13 +18,18 @@ public class Character: MonoBehaviour
     private bool attacked=false;
     private bool moved=false;
     private bool usedAbillity = false;
-    public bool isSelected;
-    public bool owner;
-    public bool supporter=true;
-    public Abillity ab=new Abillity();
-    public string abType = "heal";
-    public string charName = "Beta";
+    private bool isSelected;
+    private bool owner;
+    private bool supporter=true;
+    private Abillity ab=new Abillity();
+    private string abType = "heal";
+    private string charName = "Beta";
     public Sprite charSprite;
+    int aBoost = 0;
+    int dBoost = 0;
+    int mBoost = 0;
+    Vector3 pos = Vector3.zero;
+    int hpBoost = 0;
    // public Sprite[] sprites=Resources.LoadAll("Spites",  typeof(Sprite)).Cast<Sprite>().ToArray();
 
     public int getmRange()
@@ -70,6 +75,10 @@ public class Character: MonoBehaviour
     public void setAbillity(string a)
     {
         abType = a;
+    }
+    public void setPos(Vector3 pos)
+    {
+        this.pos = pos;
     }
     public int getHealth()
     {
@@ -138,6 +147,7 @@ public class Character: MonoBehaviour
     public void SetPosition(Vector3 pos)
     {
         transform.position = pos;
+        pos= transform.position;
     }
     public void takeDammage(int power, int b)
     {
@@ -172,6 +182,15 @@ public class Character: MonoBehaviour
         attacked = false;
         moved = false;
         usedAbillity = false;
+         
+    }
+    public void resetBoosts()
+    {
+        aBoost = 0;
+        dBoost = 0;
+        mBoost = 0;
+        pos = transform.position;
+        hpBoost = 0;
     }
     public void change()
     {
@@ -186,12 +205,23 @@ public class Character: MonoBehaviour
     {
         return gameObject.GetComponent<Character>();
     }
+    public string getAb()
+    {
+        return abType;
+    }
     public int calculateValue()
     {
         int value = 0;
-        value = atk+def+mRange+aRange+actRange;
-        value *= (health / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
+        //value = atk+def+mRange+aRange+actRange+aBoost+dBoost+mBoost;
+        //value *= ((health+hpBoost) / 10);
+        // value *= Mathf.Abs((int)Vector3.Distance(pos, new Vector3(55, 55)) - 70);
+        value += (((health + hpBoost) / 10) * (def + dBoost));
+        value += ((atk + aBoost) * (aRange)); //* (70 - Mathf.Abs((int)Vector3.Distance(pos, new Vector3(55, 55)))))
+        value += ((mRange + mBoost) * actRange);
+
+        int dis = (Mathf.Abs((int)Vector3.Distance(pos, new Vector3(55, 55))) - 5) / 10;
+        value/=dis;
+
         if (!owner)
             value *= -1;
 
@@ -199,66 +229,46 @@ public class Character: MonoBehaviour
     }
     public int calculateDamValue(int pow)
     {
-        int hp=health-(25*pow)/def;
-        if (hp <= 0)
-            return 0;
+        hpBoost -= (25 * pow / def);
+        if (health + hpBoost <= 0)
+            hpBoost = health;
 
-        int value = 0;
-        value = atk + def + mRange + aRange + actRange;
-        value *= ((hp) / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
-        if (!owner)
-            value *= -1;
 
-        return value;
+        return calculateValue();
     }
     public int calculateHealValue()
     {
-        int hp = health + 25;
-        if (hp >=100)
-            hp=100;
+        if(health-hpBoost>0)
+        hpBoost += 25;
 
-        int value = 0;
-        value = atk + def + mRange + aRange + actRange ;
-        value *= ((hp) / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
-        if (!owner)
-            value *= -1;
+        if (health+hpBoost>=100)
+            hpBoost=100-health;
 
-        return value;
+        return calculateValue();
     }
-    public int calculateMoveValue(Vector3 pos)
+    public int calculateMoveValue(Vector3 posb)
     {
-        int value = 0;
-        value = atk + def + mRange + aRange + actRange ;
-        value *= (health / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(pos, new Vector3(55, 55)) - 70);
-        if (!owner)
-            value *= -1;
-
-        return value;
+       pos=posb;
+        return calculateValue();
     }
-    public int calculateBoostValue()
+    public int calculateBoostValue(string action)
     {
-        int value = 0;
-        value = atk + def + mRange + aRange + actRange +1;
-        value *= (health / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
-        if (!owner)
-            value *= -1;
+        if (action.Equals("boostA"))
+            aBoost += 1;
 
-        return value;
+        if (action.Equals("boostD"))
+            dBoost += 1;
+
+        if (action.Equals("boostM"))
+            mBoost += 1;
+
+        return calculateValue();
     }
-    public int calculateLowerValue()
+    public int calculateLowerValue(string action)
     {
-        int value = 0;
-        value = atk + def + mRange + aRange + actRange -1;
-        value *= (health / 10);
-        value *= Mathf.Abs((int)Vector3.Distance(getPosition(), new Vector3(55, 55)) - 70);
-        if (!owner)
-            value *= -1;
-
-        return value;
+        if (action.Equals("lowerA"))
+            aBoost -= 1;
+        return calculateValue();
     }
 
 

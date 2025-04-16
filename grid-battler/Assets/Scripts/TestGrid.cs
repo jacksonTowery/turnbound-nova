@@ -53,29 +53,36 @@ public class TestGrid : MonoBehaviour
         pathFinding = new PathFinding(11, 11, spriteP,spriteD);
          characters = new List<Character>();
         objA = attatchChar(CharList.selectCharA,objA);
+        //objA.GetComponent<Character>().SetPosition(objA.GetComponent<Character>().getPosition());
          //characters.Add(characterA);
         //Debug.Log(CharList.selectChar);
          characters.Add(objA.GetComponent<Character>());
          //characters.Add(characterB);
          objB=attatchChar(CharList.selectCharB,objB);
+        //objB.GetComponent<Character>().SetPosition(objB.GetComponent<Character>().getPosition());
         characters.Add(objB.GetComponent<Character>());
         //characters.Add(characterC);
         objC = attatchChar(CharList.selectCharC, objC);
+       // objC.GetComponent<Character>().SetPosition(objC.GetComponent<Character>().getPosition());
         characters.Add(objC.GetComponent<Character>());
         //characters.Add(characterD);
         objD = attatchChar(CharList.selectCharD, objD);
+       // objD.GetComponent<Character>().SetPosition(objD.GetComponent<Character>().getPosition());
         characters.Add(objD.GetComponent<Character>());
         // characters.Add(characterE);
         objE = attatchChar(CharList.selectCharE, objE);
+        //objE.GetComponent<Character>().SetPosition(objE.GetComponent<Character>().getPosition());
         characters.Add(objE.GetComponent<Character>());
         // characters.Add(characterF);
         objF = attatchChar(CharList.selectCharF, objF);
+        //objF.GetComponent<Character>().SetPosition(objF.GetComponent<Character>().getPosition());
         characters.Add(objF.GetComponent<Character>());
         //changeCharacter(characterA);
         //changeTargetedCharacter(characterE);
         int t = 0;
         foreach (Character c in characters)
         {
+            c.calculateMoveValue(c.getPosition());
             if (t <= 2)
                 c.change();
 
@@ -472,18 +479,29 @@ public class TestGrid : MonoBehaviour
          else*/
         if (!player1Turn()&&CharList.AI)
         {
-           // randomChar();
+            // randomChar();
             //Debug.Log(character);
             //int decission = UnityEngine.Random.Range(0, 3);
-           // int decission = 0;
-           calc.calculateAll(characters, pathFinding);
+            // int decission = 0;
+
+            //calc.calculateAll(characters, pathFinding, actions);
+            //calc.calculateR(actions, characters[0], characters[1], characters[2], characters[3], characters[4], characters[5], true);
+            calc.calculateR(actions, characters, true);
+
             int decission = calc.getAction();
+           
+
             changeCharacter(calc.getCharacter());
             //Debug.Log(calc.getCharacter());
             changeTargetedCharacter(calc.getTarget());
-           // Debug.Log(character);
+            //Debug.Log(character.getName() + " " + decission+" ");
+            // Debug.Log(character);
             //Debug.Log(decission);
             //Debug.Log(targetedCharacter);
+            // Debug.Log(!character.getMoved());
+            if (character == null)
+                decission = 4;
+
             if (decission == 0&&!character.getMoved())
             {
                 
@@ -491,6 +509,8 @@ public class TestGrid : MonoBehaviour
                 // int xEnd = ((UnityEngine.Random.Range(0, 10))*10)+5;
                 // int yEnd = ((UnityEngine.Random.Range(0, 10)) * 10)+5;
                 calc.getPosition(out int xEnd, out int yEnd);
+                //Debug.Log(xEnd + ", " + yEnd);
+                //Debug.Log(xEnd + ", " + yEnd);
                 xEnd = (xEnd * 10) + 5;
                 yEnd = (yEnd * 10) + 5; 
                 //pathFinding.getGrid().GetXY(new Vector3(xEnda, yEnda), out int xEnd, out int yEnd);
@@ -512,6 +532,7 @@ public class TestGrid : MonoBehaviour
                     // character.SetPosition(pathFinding.getGrid().GetWorldPosition(xEnd, yEnd) + new Vector3(5, 5));
                     character.SetPosition(new Vector3(xEnd,yEnd));
                     character.Moved();
+                   Debug.Log(character.getName()+" moved to "+character.getPosition());
                     //Debug.Log(character.getPosition()+"Pos");
                    // move = false;
                    // pathFinding.getGrid().resetSprites();
@@ -542,7 +563,9 @@ public class TestGrid : MonoBehaviour
                     if (targetedCharacter.getHealth() <= 0)
                     {
                         characters.Remove(targetedCharacter);
+                        characters.Add(null);
                         checkForVictory();
+                      //  Debug.Log(character.getName()+" attacked "+ targetedCharacter.getName());
                     }
                 }
             }
@@ -561,9 +584,10 @@ public class TestGrid : MonoBehaviour
                     pathFinding.getGrid().resetSprites();
                     character.usedAction();
                     act = false;
+                    Debug.Log(character.getName() + " boosted " + targetedCharacter.getName());
 
                     //useAnAction();
-                   // Debug.Log("Acted");
+                    // Debug.Log("Acted");
 
                 }
             }
