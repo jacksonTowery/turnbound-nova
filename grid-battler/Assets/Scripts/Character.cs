@@ -48,6 +48,10 @@ public class Character: MonoBehaviour
     {
         return atk;
     }
+    public int getAIAtk()
+    {
+        return atk+aBoost;
+    }
     public void setAtk(int a)
     {
         atk = a;
@@ -225,13 +229,16 @@ public class Character: MonoBehaviour
         if (!owner)
             value *= -1;
 
+        if(health+hpBoost<=0)
+            value = 0;
+
         return value;
     }
     public int calculateDamValue(int pow)
     {
-        hpBoost -= (25 * pow / def);
+        hpBoost -= (25 * pow /(def+dBoost));
         if (health + hpBoost <= 0)
-            hpBoost = health;
+            hpBoost =100- health;
 
 
         return calculateValue();
@@ -266,7 +273,7 @@ public class Character: MonoBehaviour
     }
     public int calculateLowerValue(string action)
     {
-        if (action.Equals("lowerA"))
+        if (action.Equals("lowerA")&&atk+aBoost>1)
             aBoost -= 1;
         return calculateValue();
     }

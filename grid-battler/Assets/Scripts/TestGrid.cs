@@ -184,12 +184,15 @@ public class TestGrid : MonoBehaviour
         Vector3 characterPosition;
         foreach (Character characterPos in characters)
         {
-            pathFinding.getGrid().GetXY(characterPos.transform.position, out int xChar, out int yChar);
-            characterPosition = new Vector3(xChar, yChar);
-            //Debug.Log("Clicked: " + gridPosition + ", Character: " + characterPos.transform.position);
-            if (characterPosition==gridPosition)
+            if (characterPos != null)
             {
-                return true;
+                pathFinding.getGrid().GetXY(characterPos.transform.position, out int xChar, out int yChar);
+                characterPosition = new Vector3(xChar, yChar);
+                //Debug.Log("Clicked: " + gridPosition + ", Character: " + characterPos.transform.position);
+                if (characterPosition == gridPosition)
+                {
+                    return true;
+                }
             }
         }
         return false;

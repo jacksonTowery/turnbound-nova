@@ -192,7 +192,7 @@ public class ValueCalculator
     {
         foreach (Character characterPos in charList)
         {
-            if (characterPos.getPosition() == position)
+            if (characterPos!=null&& characterPos.getPosition()!=null &&characterPos.getPosition() == position)
             {
                 return true;
             }
@@ -431,7 +431,7 @@ public class ValueCalculator
                             int xPos = (int)(chara.getPosition().x - 5) / 10;
                             int yPos = (int)(chara.getPosition().y - 5) / 10;
 
-                            int maxMove = chara.getmRange() + 1;
+                            int maxMove = chara.getmRange()+1;
                             //int maxMove = chara.getmRange();
                             //List<PathNode> path;
                             int path = 0;
@@ -447,7 +447,7 @@ public class ValueCalculator
                                         {
                                             //path = pathFinding.FindPath(xPos, yPos, x, y, true);
                                             //path=(int)((Math.Abs(chara.getPosition().x - x)/10)+ (Math.Abs(chara.getPosition().y - y) / 10)-1);
-                                            path = (int)((Math.Abs(xPos - x)) + (Math.Abs(yPos - y)));//-1
+                                            path = (int)((Math.Abs(xPos - x)) + (Math.Abs(yPos - y)))-1;
                                             //Debug.Log((path<=maxMove)+",  "+path+"<="+ maxMove);
                                             //Debug.Log(path <= maxMove && !chara.getMoved() && chara.getPosition() != new Vector3(x, y) && !containsCharacter(new Vector3(x, y), list));
                                             //Debug.Log(chara.getMoved());
@@ -504,7 +504,7 @@ public class ValueCalculator
                                         {
                                             //Debug.Log(c.getName()+": "+c.getPosition()+", "+t.getName()+": "+t.getPosition());
                                             //calculate(c, i, Vector3.zero, t, charListCopy, 0, 0, action);
-                                            t.calculateDamValue(chara.getAtk());
+                                            t.calculateDamValue(chara.getAIAtk());
                                             if (first)
                                             {
                                                 testChar = chara;
