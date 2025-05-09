@@ -9,7 +9,7 @@ public class Tank : Character
     {
         setAtk(4);
         setDef(5);
-        setmRange(3);
+        setmRange(2);
         setaRange(3);
         setactRange(3);
         setAbillity("boostD");

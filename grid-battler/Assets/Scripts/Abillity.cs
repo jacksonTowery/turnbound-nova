@@ -27,6 +27,27 @@ public class Abillity
         if (type.Equals("lowerA"))
             return lowerA(character);
 
+        if (type.Equals("lowerD"))
+            return lowerD(character);
+
+        if (type.Equals("lowerM"))
+            return lowerM(character);
+
+        if (type.Equals("Poison"))
+            return Poison(character);
+
+        if (type.Equals("swapA/D"))
+            return swapAD(character);
+
+        if (type.Equals("Dub"))
+            return dub(character);
+        if (type.Equals("Attack"))
+            return attack(character);
+        if (type.Equals("DissableAb"))
+            return disableAb(character);
+        if (type.Equals("Thorn"))
+            return Thorn(character);
+
         return character;
     }
     public Character healChar(Character character)
@@ -62,5 +83,59 @@ public class Abillity
         }
         return character;
     }
-
+    public Character lowerD(Character character)
+    {
+        if (character.getDef() > 1)
+        {
+            character.setDef(character.getDef() - 1);
+        }
+        return character;
+    }
+    public Character lowerM(Character character)
+    {
+        if (character.getmRange() > 1)
+        {
+            character.setmRange(character.getmRange() - 1);
+        }
+        return character;
+    }
+    public Character Poison(Character character)
+    {
+        character.poison();
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
+    public Character swapAD(Character character)
+    {
+        int a=character.getAtk();
+        character.setAtk(character.getDef());
+        character.setDef(a);
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
+    public Character dub(Character character)
+    {
+        character.dub();
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
+    public Character attack(Character character)
+    {
+        int num = UnityEngine.Random.Range(25, 35);
+        character.takeDammage(4, num);
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
+    public Character disableAb(Character character)
+    {
+        character.usedAction();
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
+    public Character Thorn(Character character)
+    {
+        character.gainThorn();
+        //Debug.Log("Movement Range: " + character.getmRange());
+        return character;
+    }
 }

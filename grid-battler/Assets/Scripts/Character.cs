@@ -21,6 +21,9 @@ public class Character: MonoBehaviour
     private bool isSelected;
     private bool owner;
     private bool supporter=true;
+    private bool poisoned=false;
+    private bool thorn=false;
+    private bool doubled=false;
     private Abillity ab=new Abillity();
     private string abType = "heal";
     private string charName = "Beta";
@@ -100,6 +103,30 @@ public class Character: MonoBehaviour
     {
         charName = a;
     }
+    public void dubExpire()
+    {
+        if (doubled)
+        {
+            doubled = false;
+            atk /= 4;
+            def /= 4;
+            mRange /= 4;
+
+            if (atk <= 0)
+                atk = 1;
+            if (def <= 0)
+                def = 1;
+            if(mRange <= 0)
+                mRange = 1;
+        }
+    }
+    public void dub()
+    {
+        doubled = true;
+        atk *= 2;
+        def *= 2;
+        mRange *= 2;
+    }
     public string getAction()
     {
         return abType;
@@ -108,18 +135,38 @@ public class Character: MonoBehaviour
     {
         supporter= b;
     }
+    public void poison()
+    {
+        poisoned = true;
+    }
+    public bool getPoisoned()
+    {
+        return poisoned;
+    }
 
     public void Moved()
     {
         moved = true;
+        if (thorn)
+        {
+            takeDammage(def, 15);
+        }
     }
     public void attack()
     {
         attacked = true;
+        if (thorn)
+        {
+            takeDammage(def, 15);
+        }
     }
     public void usedAction()
     {
         usedAbillity=true;
+        if (thorn)
+        {
+            takeDammage(def, 15);
+        }
     }
     public bool getAttack()
     {
@@ -171,6 +218,12 @@ public class Character: MonoBehaviour
         {
             health += percent;
         }
+        poisoned = false;
+        thorn=false;
+    }
+    public void gainThorn()
+    {
+        thorn = true;
     }
     public Character action(Character target)
     {

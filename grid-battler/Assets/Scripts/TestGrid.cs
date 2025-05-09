@@ -117,6 +117,38 @@ public class TestGrid : MonoBehaviour
         {
             obj.AddComponent<Axellottle>();
         }
+        else if (name.Equals("Raptor"))
+        {
+            obj.AddComponent<Raptor>();
+        }
+        else if (name.Equals("Gladiator"))
+        {
+            obj.AddComponent<Gladiator>();
+        }
+        else if (name.Equals("Cobra"))
+        {
+            obj.AddComponent<Cobra>();
+        }
+        else if (name.Equals("Slime"))
+        {
+            obj.AddComponent<Slime>();
+        }
+        else if (name.Equals("Chip"))
+        {
+            obj.AddComponent<Chip>();
+        }
+        else if (name.Equals("Ogre"))
+        {
+            obj.AddComponent<Ogre>();
+        }
+        else if (name.Equals("Jelly"))
+        {
+            obj.AddComponent<Jelly>();
+        }
+        else if (name.Equals("Thorn"))
+        {
+            obj.AddComponent<Thorn>();
+        }
         else
         {
             attatchChar(randChar(), obj);
@@ -135,7 +167,7 @@ public class TestGrid : MonoBehaviour
     }
     public string randChar()
     {
-        int num = UnityEngine.Random.Range(0, 6);
+        int num = UnityEngine.Random.Range(0, 8);
         if(num == 0)
         {
             return "Astronaut";
@@ -159,6 +191,14 @@ public class TestGrid : MonoBehaviour
         else if(num == 5)
         {
             return "Axellottle";
+        }
+        else if (num == 6)
+        {
+            return "Raptor";
+        }
+        else if (num == 7)
+        {
+            return "Gladiator";
         }
         return "Astronaut";
     }
@@ -232,6 +272,19 @@ public class TestGrid : MonoBehaviour
             if(character.getIsOwner())
             {
                 character.resetBools();
+                if (character.getPoisoned())
+                {
+                    character.takeDammage(10,character.getDef());
+                    if (character.getHealth() <= 0)
+                    {
+                        characters.Remove(character);
+                        checkForVictory();
+                    }
+                }
+            }
+            else
+            {
+                character.dubExpire();
             }
             character.change();
         }
@@ -676,6 +729,11 @@ public class TestGrid : MonoBehaviour
                     move = false;
                     pathFinding.getGrid().resetSprites();
                     useAnAction();
+                    if (character.getHealth() <= 0)
+                    {
+                        characters.Remove(character);
+                        checkForVictory();
+                    }
                 }
                 else
                 {
@@ -736,6 +794,11 @@ public class TestGrid : MonoBehaviour
                         character.usedAction();
                         act = false;
 
+                        if (targetedCharacter.getHealth() <= 0)
+                        {
+                            characters.Remove(targetedCharacter);
+                            checkForVictory();
+                        }
                         useAnAction();
                       //  Debug.Log("HP: " + targetedCharacter.getHealth());
                         
